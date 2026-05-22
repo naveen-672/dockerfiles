@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Ticket Booking</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#0f172a;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    /* HEADER */
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 60px;
+      background:rgba(255,255,255,0.05);
+      backdrop-filter:blur(10px);
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+
+    .logo{
+      font-size:32px;
+      font-weight:bold;
+      color:#f43f5e;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:white;
+      margin-left:25px;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#f43f5e;
+    }
+
+    /* HERO */
+
+    .hero{
+      height:90vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
+      url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1400&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+    }
+
+    .hero-content h1{
+      font-size:70px;
+      margin-bottom:20px;
+    }
+
+    .hero-content span{
+      color:#f43f5e;
+    }
+
+    .hero-content p{
+      font-size:20px;
+      color:#cbd5e1;
+      margin-bottom:30px;
+    }
+
+    .hero-content button{
+      padding:15px 35px;
+      border:none;
+      background:#f43f5e;
+      color:white;
+      font-size:18px;
+      border-radius:10px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .hero-content button:hover{
+      background:#e11d48;
+      transform:scale(1.05);
+    }
+
+    /* MOVIES */
+
+    .movies{
+      padding:80px 60px;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:45px;
+      margin-bottom:50px;
+      color:#f43f5e;
+    }
+
+    .movie-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .movie-card{
+      background:#1e293b;
+      border-radius:20px;
+      overflow:hidden;
+      transition:0.4s;
+      box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .movie-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .movie-card img{
+      width:100%;
+      height:400px;
+      object-fit:cover;
+    }
+
+    .movie-info{
+      padding:20px;
+    }
+
+    .movie-info h3{
+      font-size:28px;
+      margin-bottom:10px;
+    }
+
+    .movie-info p{
+      color:#cbd5e1;
+      margin-bottom:15px;
+      line-height:1.6;
+    }
+
+    .movie-info button{
+      width:100%;
+      padding:14px;
+      border:none;
+      background:#f43f5e;
+      color:white;
+      border-radius:10px;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .movie-info button:hover{
+      background:#e11d48;
+    }
+
+    /* BOOKING */
+
+    .booking{
+      padding:80px 60px;
+      background:#111827;
+    }
+
+    .booking-box{
+      max-width:700px;
+      margin:auto;
+      background:#1e293b;
+      padding:40px;
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .booking-box h2{
+      text-align:center;
+      margin-bottom:30px;
+      color:#f43f5e;
+      font-size:40px;
+    }
+
+    .input-group{
+      margin-bottom:20px;
+    }
+
+    .input-group label{
+      display:block;
+      margin-bottom:8px;
+      color:#cbd5e1;
+    }
+
+    .input-group input,
+    .input-group select{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:10px;
+      outline:none;
+      background:#0f172a;
+      color:white;
+      font-size:16px;
+    }
+
+    .book-btn{
+      width:100%;
+      padding:16px;
+      border:none;
+      border-radius:10px;
+      background:linear-gradient(to right,#f43f5e,#ec4899);
+      color:white;
+      font-size:18px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .book-btn:hover{
+      transform:scale(1.03);
+    }
+
+    /* FOOTER */
+
+    footer{
+      text-align:center;
+      padding:25px;
+      background:#020617;
+      color:#cbd5e1;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:768px){
+
+      header{
+        flex-direction:column;
+        gap:15px;
+        padding:20px;
+      }
+
+      .hero-content h1{
+        font-size:45px;
+      }
+
+      .movies,
+      .booking{
+        padding:50px 20px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="logo">MovieGo</div>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Movies</a>
+      <a href="#">Bookings</a>
+      <a href="#">Contact</a>
+    </nav>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1>Book Your <span>Movie Tickets</span> Online</h1>
+
+      <p>
+        Experience the best cinema booking platform with modern UI,
+        instant booking, and premium seats.
+      </p>
+
+      <button onclick="scrollToMovies()">
+        Explore Movies
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- MOVIES -->
+
+  <section class="movies" id="movies">
+
+    <h2 class="section-title">Now Showing</h2>
+
+    <div class="movie-container">
+
+      <!-- MOVIE 1 -->
+
+      <div class="movie-card">
+
+        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="movie-info">
+
+          <h3>Avengers</h3>
+
+          <p>
+            Action-packed superhero adventure with stunning visuals.
+          </p>
+
+          <button onclick="selectMovie('Avengers')">
+            Book Tickets
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- MOVIE 2 -->
+
+      <div class="movie-card">
+
+        <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="movie-info">
+
+          <h3>Interstellar</h3>
+
+          <p>
+            A breathtaking journey through space and time.
+          </p>
+
+          <button onclick="selectMovie('Interstellar')">
+            Book Tickets
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- MOVIE 3 -->
+
+      <div class="movie-card">
+
+        <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="movie-info">
+
+          <h3>Batman</h3>
+
+          <p>
+            Dark action thriller with amazing cinematic experience.
+          </p>
+
+          <button onclick="selectMovie('Batman')">
+            Book Tickets
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- BOOKING SECTION -->
+
+  <section class="booking">
+
+    <div class="booking-box">
+
+      <h2>Book Your Seat</h2>
+
+      <div class="input-group">
+        <label>Movie Name</label>
+        <input type="text" id="movieName" placeholder="Selected movie">
+      </div>
+
+      <div class="input-group">
+        <label>Your Name</label>
+        <input type="text" id="userName" placeholder="Enter your name">
+      </div>
+
+      <div class="input-group">
+        <label>Date</label>
+        <input type="date" id="movieDate">
+      </div>
+
+      <div class="input-group">
+        <label>Show Time</label>
+        <select id="showTime">
+          <option>10:00 AM</option>
+          <option>1:00 PM</option>
+          <option>4:00 PM</option>
+          <option>7:00 PM</option>
+          <option>10:00 PM</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>Seats</label>
+        <select id="seats">
+          <option>1 Seat</option>
+          <option>2 Seats</option>
+          <option>3 Seats</option>
+          <option>4 Seats</option>
+        </select>
+      </div>
+
+      <button class="book-btn" onclick="bookTicket()">
+        Confirm Booking
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 MovieGo | All Rights Reserved
+  </footer>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    function scrollToMovies(){
+      document.getElementById("movies").scrollIntoView({
+        behavior:'smooth'
+      });
+    }
+
+    function selectMovie(movie){
+      document.getElementById("movieName").value = movie;
+
+      window.scrollTo({
+        top:document.querySelector(".booking").offsetTop,
+        behavior:'smooth'
+      });
+    }
+
+    function bookTicket(){
+
+      let movie = document.getElementById("movieName").value;
+      let user = document.getElementById("userName").value;
+
+      if(movie === "" || user === ""){
+        alert("Please fill all details");
+        return;
+      }
+
+      alert(
+        "🎉 Ticket Booked Successfully!\n\nMovie: "
+        + movie +
+        "\nCustomer: "
+        + user
+      );
+    }
+
+  </script>
+
+</body>
+</html>

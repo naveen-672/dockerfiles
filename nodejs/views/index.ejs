@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>Hotel Booking App</title>
+
+  <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+  <header>
+
+    <h1>StayEasy</h1>
+
+  </header>
+
+  <section class="hero">
+
+    <h2>Book Your Dream Hotel</h2>
+
+    <p>Best hotels at affordable prices</p>
+
+  </section>
+
+  <section class="hotels">
+
+    <% hotels.forEach(hotel => { %>
+
+      <div class="card">
+
+        <h2><%= hotel.name %></h2>
+
+        <p>📍 <%= hotel.place %></p>
+
+        <h3>₹ <%= hotel.price %></h3>
+
+        <button onclick="fillHotel('<%= hotel.name %>')">
+          Book Now
+        </button>
+
+      </div>
+
+    <% }) %>
+
+  </section>
+
+  <section class="booking">
+
+    <h2>Booking Form</h2>
+
+    <% if(success){ %>
+
+      <div class="success">
+        Booking Successful 🎉
+      </div>
+
+    <% } %>
+
+    <form action="/book" method="POST">
+
+      <input
+        type="text"
+        name="hotel"
+        id="hotelInput"
+        placeholder="Hotel Name"
+        required
+      >
+
+      <input
+        type="text"
+        name="name"
+        placeholder="Your Name"
+        required
+      >
+
+      <input
+        type="date"
+        name="date"
+        required
+      >
+
+      <button type="submit">
+        Confirm Booking
+      </button>
+
+    </form>
+
+  </section>
+
+  <script>
+
+    function fillHotel(name){
+
+      document.getElementById("hotelInput").value = name;
+
+    }
+
+  </script>
+
+</body>
+
+</html>
